@@ -5,7 +5,7 @@ import AddItem from './ShoppingList/AddItem';
 class App extends Component {
   render() {
     return (
-      <div className="App" class="container">
+      <div className="App container">
         <AddItem />
       </div>
     );

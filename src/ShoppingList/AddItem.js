@@ -15,8 +15,8 @@ class AddItem extends Component {
 
     render() {
         return (
-            <div className="AddItemMain" class="row justify-content-center">
-                <div className="header" class="col-12 col-md-8">
+            <div className="row justify-content-center">
+                <div className="col-12 col-md-8">
                     <form onSubmit={this.handleSubmit}>
                         <input placeholder="enter Item" onChange={this.handleChange}
                             value={this.state.text}>

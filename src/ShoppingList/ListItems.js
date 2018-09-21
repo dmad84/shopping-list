@@ -5,9 +5,9 @@ class ListItems extends Component {
   render() {
 
     return (
-      <ul className="theList" class="list-group">
+      <ul className="theList" className="list-group">
         {this.props.items.map(item => (
-          <li key={item.id} class="list-group-item">{item.text}</li>
+          <li key={item.id} className="list-group-item">{item.text}</li>
         ))}
       </ul>
     );

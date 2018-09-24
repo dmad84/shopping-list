@@ -11,6 +11,7 @@ class AddItem extends Component {
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.deleteItem = this.deleteItem.bind(this);
     }
 
     render() {
@@ -23,7 +24,7 @@ class AddItem extends Component {
                         </input>
                         <button type="submit">add</button>
                     </form>
-                    <ListItems items={this.state.items} />
+                    <ListItems items={this.state.items} delete = {this.deleteItem}/>
                 </div>
             </div>
         );
@@ -45,6 +46,17 @@ class AddItem extends Component {
             items: state.items.concat(newItem),
             text: ''
         }));
+    }
+    deleteItem(key){
+        var filteredItems = this.state.items.filter(function(item){
+            return (item.key !== key);
+
+        });
+
+        this.setState ({
+            items:filteredItems
+        });
+
     }
 }
 

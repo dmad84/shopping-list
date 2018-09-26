@@ -47,9 +47,10 @@ class AddItem extends Component {
             text: ''
         }));
     }
-    deleteItem(key){
+    deleteItem(id){
+        console.log(id);
         var filteredItems = this.state.items.filter(function(item){
-            return (item.key !== key);
+            return (item.id !== id);
 
         });
 

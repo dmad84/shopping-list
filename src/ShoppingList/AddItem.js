@@ -6,7 +6,7 @@ class AddItem extends Component {
         super(props);
 
         this.state = {
-            items: [{ 'text': 'name of', 'id': 1 }],
+            items: [{ 'text': 'name of', 'id': Date.now() }],
             text: ''
         };
         this.handleChange = this.handleChange.bind(this);

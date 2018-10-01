@@ -1,18 +1,37 @@
 import React, { Component } from "react";
+import firebase from '../firebase'; 
 import ListItems from './ListItems';
+
 
 class AddItem extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            items: [{ 'text': 'name of', 'id': Date.now() }],
+            items: [],
             text: ''
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.deleteItem = this.deleteItem.bind(this);
     }
+
+    componentDidMount() {
+        const itemsRef = firebase.database().ref('shopping-items');
+        itemsRef.on('value', (snapshot) => {
+          let items = snapshot.val();
+          let newState = [];
+          for (let item in items) {
+            newState.push({
+              id: items[item].id,
+              text: items[item].text
+            });
+          }
+          this.setState({
+            items: newState
+          });
+        });
+      }
 
     render() {
         return (
@@ -35,6 +54,8 @@ class AddItem extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
+        const itemsRef = firebase.database().ref('shopping-items');
+
         if (!this.state.text.length) {
             return;
         }
@@ -42,13 +63,13 @@ class AddItem extends Component {
             text: this.state.text,
             id: Date.now()
         };
+        itemsRef.push(newItem);
         this.setState(state => ({
             items: state.items.concat(newItem),
             text: ''
         }));
     }
     deleteItem(id){
-        console.log(id);
         var filteredItems = this.state.items.filter(function(item){
             return (item.id !== id);
 

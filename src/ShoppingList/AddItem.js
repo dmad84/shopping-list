@@ -65,7 +65,6 @@ class AddItem extends Component {
         };
         itemsRef.push(newItem);
         this.setState(state => ({
-            items: state.items.concat(newItem),
             text: ''
         }));
     }

@@ -20,10 +20,11 @@ class AddItem extends Component {
         const itemsRef = firebase.database().ref('shopping-items');
         itemsRef.on('value', (snapshot) => {
           let items = snapshot.val();
+          console.log(items);
           let newState = [];
           for (let item in items) {
             newState.push({
-              id: items[item].id,
+              id: item,
               text: items[item].text
             });
           }
@@ -60,8 +61,7 @@ class AddItem extends Component {
             return;
         }
         const newItem = {
-            text: this.state.text,
-            id: Date.now()
+            text: this.state.text
         };
         itemsRef.push(newItem);
         this.setState(state => ({
@@ -69,14 +69,9 @@ class AddItem extends Component {
         }));
     }
     deleteItem(id){
-        var filteredItems = this.state.items.filter(function(item){
-            return (item.id !== id);
-
-        });
-
-        this.setState ({
-            items:filteredItems
-        });
+       console.log(id);
+       const itemRef = firebase.database().ref('shopping-items');
+       itemRef.child(id).remove();
 
     }
 }

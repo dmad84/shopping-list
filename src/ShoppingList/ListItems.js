@@ -7,7 +7,7 @@ class ListItems extends Component {
   render() {
 
     return (
-      <ul className="theList" className="list-group">
+      <ul className="list-group">
         {this.props.items.map((item,index) => (
           <li key={index} onClick={() => this.delete(item.id)} className="list-group-item">{index + 1} {item.text}</li>
         ))}

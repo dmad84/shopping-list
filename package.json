@@ -8,6 +8,9 @@
     "react-dom": "^16.5.2",
     "react-scripts": "1.1.5"
   },
+  "now": {
+    "alias": "shopping-list"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

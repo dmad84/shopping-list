@@ -12,7 +12,7 @@ before_deploy:
 - yarn add now
 deploy:
   - provider: script
-    script:now --public --token $NOW_TOKEN  && now alias --token $NOW_TOKEN
+    script: now --public --token $NOW_TOKEN  && now alias --token $NOW_TOKEN
     skip_cleanup: true
     on:
       master: true

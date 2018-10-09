@@ -8,10 +8,12 @@ install:
 - yarn install
 script:
 - npm run build
-before_deploy: yarn add now
+before_deploy: 
+- yarn add now
+-  now rm shopping-list --safe --yes --token $NOW_TOKEN 
 deploy:
   - provider: script
-    script: now rm shopping-list --safe --yes --token $NOW_TOKEN && now --public --token $NOW_TOKEN  && now alias --token $NOW_TOKEN
+    script:now --public --token $NOW_TOKEN  && now alias --token $NOW_TOKEN
     skip_cleanup: true
     on:
       master: true

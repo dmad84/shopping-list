@@ -20,7 +20,6 @@ class AddItem extends Component {
         const itemsRef = firebase.database().ref('shopping-items');
         itemsRef.on('value', (snapshot) => {
           let items = snapshot.val();
-          console.log(items);
           let newState = [];
           for (let item in items) {
             newState.push({
@@ -72,7 +71,6 @@ class AddItem extends Component {
         }));
     }
     deleteItem(id){
-       console.log(id);
        const itemRef = firebase.database().ref('shopping-items');
        itemRef.child(id).remove();
 

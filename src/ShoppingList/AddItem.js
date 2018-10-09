@@ -38,11 +38,14 @@ class AddItem extends Component {
         return (
             <div className="row justify-content-center">
                 <div className="col-12 col-md-8">
-                    <form onSubmit={this.handleSubmit}>
-                        <input placeholder="enter Item" onChange={this.handleChange}
-                            value={this.state.text}>
-                        </input>
-                        <button type="submit">add</button>
+                    <form onSubmit={this.handleSubmit} className="my-3 form-inline">
+                        <div class="form-group mb-2 p3">
+                            <label className="sr-only">Item</label>
+                            <input placeholder="enter Item" onChange={this.handleChange}
+                                value={this.state.text}>
+                            </input>
+                            <button type="submit" className="btn btn-primary mb-2">add</button>
+                        </div>
                     </form>
                     <ListItems items={this.state.items} delete = {this.deleteItem}/>
                 </div>

@@ -73,7 +73,6 @@ class AddItem extends Component {
     deleteItem(id){
        const itemRef = firebase.database().ref('shopping-items');
        itemRef.child(id).remove();
-
     }
 }
 

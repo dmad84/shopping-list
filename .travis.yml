@@ -10,7 +10,6 @@ script:
 - npm run build
 before_deploy: 
 - yarn add now
-- now rm shopping-list --safe --yes --token $NOW_TOKEN 
 deploy:
   - provider: script
     script:now --public --token $NOW_TOKEN  && now alias --token $NOW_TOKEN

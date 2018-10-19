@@ -39,7 +39,7 @@ class AddItem extends Component {
             <div className="row">
                 <form onSubmit={this.handleSubmit} className="my-3 col-lg-8">
                     <div className="form-row">
-                        <div class="form-group col-md-6">
+                        <div className="form-group col-md-6">
                             <label className="sr-only">Item</label>
                             <input placeholder="enter Item" onChange={this.handleChange} value={this.state.text} className="form-control">
                             </input>

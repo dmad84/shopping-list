@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import firebase from '../firebase';
 import ListItems from './ListItems';
+import Loading from './Loading';
 import './AddItem.css';
 
 
@@ -58,9 +59,14 @@ class AddItem extends Component {
                         </div>
                     </div>
                 </form>
-                <div className="col-lg-8">
-                    <ListItems items={this.state.items} delete={this.deleteItem} />
-                </div>
+                { this.state.items.length > 0 ? (
+                    <div className="col-lg-8">
+                        <ListItems items={this.state.items} delete={this.deleteItem} />
+                    </div>
+                 ) : (
+                    <Loading />
+                 )}
+
             </div>
         );
     }

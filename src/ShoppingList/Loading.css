@@ -1,10 +1,10 @@
 .lds-facebook {
-    display: inline-block;
+    display: block;
     position: relative;
     width: 100px;
     height: 100px;
     top: 50%;
-    left: 50%;
+    left: 43%;
   }
   .lds-facebook div {
     display: inline-block;

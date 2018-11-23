@@ -59,13 +59,15 @@ class AddItem extends Component {
                         </div>
                     </div>
                 </form>
-                { this.state.items.length > 0 ? (
+                {this.state.items.length > 0 ? (
                     <div className="col-lg-8">
                         <ListItems items={this.state.items} delete={this.deleteItem} />
                     </div>
-                 ) : (
-                    <Loading />
-                 )}
+                ) : (
+                        <div className="col-lg-8">
+                            <Loading />
+                        </div>
+                    )}
 
             </div>
         );

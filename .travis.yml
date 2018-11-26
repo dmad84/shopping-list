@@ -6,7 +6,6 @@ cache:
     - node_modules
 install:
 - npm install
-- RUN npm rebuild
 script:
 - npm run build
 deploy:

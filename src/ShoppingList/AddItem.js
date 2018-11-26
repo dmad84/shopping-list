@@ -33,7 +33,6 @@ class AddItem extends Component {
                 items: newState
             });
         });
-        console.log(this.state.items);
     }
 
     render() {

@@ -1,5 +1,7 @@
 
-import firebase from 'firebase';
+import firebase from 'firebase/app';
+import 'firebase/database';
+
 const config = {
     apiKey: "AIzaSyA42-DkejyxnyZFYUklQrT-jTAIXPhO0EM",
     authDomain: "shopping-list-8af71.firebaseapp.com",

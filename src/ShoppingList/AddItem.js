@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import firebase from '../firebase';
 import ListItems from './ListItems';
 import Loading from './Loading';
+import Categories from './Categories';
 import './AddItem.css';
 
 
@@ -11,7 +12,9 @@ class AddItem extends Component {
 
         this.state = {
             items: [],
-            text: ''
+            text: '',
+            categories: [],
+            category: ''
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -33,6 +36,20 @@ class AddItem extends Component {
                 items: newState
             });
         });
+        const categoriesRef = firebase.database().ref('categories');
+        categoriesRef.on('value', (snapshot) => {
+            let categories = snapshot.val();
+            let newCategory = [];
+            for (let item in categories) {
+                newCategory.push({
+                    id: item,
+                    text: categories[item].name
+                });
+            }
+            this.setState({
+                categories: newCategory
+            });
+        });
     }
 
     render() {
@@ -45,21 +62,13 @@ class AddItem extends Component {
                             <input placeholder="enter Item" onChange={this.handleChange} value={this.state.text} className="form-control">
                             </input>
                         </div>
-                        <div className="form-group col-md-4">
-                            <select className="custom-select">
-                                <option value="0" defaultValue>Category</option>
-                                <option value="1">Featured</option>
-                                <option value="2">Most popular</option>
-                                <option value="3">Top rated</option>
-                                <option value="4">Most commented</option>
-                            </select>
-                        </div>
+                        <Categories items={this.state.categories} />
                         <div className="form-group col-md-2">
                             <button type="submit" className="btn btn-primary">add</button>
                         </div>
                     </div>
                 </form>
-                { this.state.items.length > 0 ? (
+                {this.state.items.length > 0 ? (
                     <div className="col-lg-8">
                         <ListItems items={this.state.items} delete={this.deleteItem} />
                     </div>
@@ -84,7 +93,8 @@ class AddItem extends Component {
             return;
         }
         const newItem = {
-            text: this.state.text
+            text: this.state.text,
+            category: 'veg'
         };
         itemsRef.push(newItem);
         this.setState(state => ({

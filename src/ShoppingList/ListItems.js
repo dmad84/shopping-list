@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Item from './Item';
 
 class ListItems extends Component {
   delete(id) {
@@ -9,7 +10,10 @@ class ListItems extends Component {
     return (
       <ul className="list-group">
         {this.props.items.map((item,index) => (
-          <li key={item.id} onClick={() => this.delete(item.id)} className="list-group-item">{index + 1} {item.text}</li>
+          <div key={item.id}>
+          <li onClick={() => this.delete(item.id)} className="list-group-item">{item.text}</li>
+            <Item items={item.items} />
+          </div>
         ))}
       </ul>
     );

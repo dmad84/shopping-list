@@ -22,32 +22,30 @@ class AddItem extends Component {
     }
 
     componentDidMount() {
-        const itemsRef = firebase.database().ref('shopping-items');
-        itemsRef.on('value', (snapshot) => {
-            let items = snapshot.val();
-            let newState = [];
-            for (let item in items) {
-                newState.push({
-                    id: item,
-                    text: items[item].text
-                });
-            }
-            this.setState({
-                items: newState
-            });
-        });
-        const categoriesRef = firebase.database().ref('categories');
+        
+        const categoriesRef = firebase.database().ref('shopping-items').child('categories');
         categoriesRef.on('value', (snapshot) => {
             let categories = snapshot.val();
             let newCategory = [];
+            let newItems = [];
             for (let item in categories) {
-                newCategory.push({
+                let category = {
                     id: item,
                     text: categories[item].name
-                });
+                };
+                if(categories[item].items) {
+                    category.items = categories[item].items;
+                    newItems.push(category);
+                }
+                newCategory.push(category);
+
             }
+            console.log(newItems);
             this.setState({
                 categories: newCategory
+            });
+            this.setState({
+                items: newItems
             });
         });
     }

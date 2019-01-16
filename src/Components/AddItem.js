@@ -34,13 +34,19 @@ class AddItem extends Component {
                     text: categories[item].name
                 };
                 if(categories[item].items) {
-                    category.items = categories[item].items;
+                    category.items = [];
+                   
+                    for (let i in categories[item].items) {
+                        category.items.push(categories[item].items[i]);
+                    }
+                   
                     newItems.push(category);
+                    
                 }
                 newCategory.push(category);
 
             }
-            console.log(newItems);
+            
             this.setState({
                 categories: newCategory
             });
@@ -85,16 +91,15 @@ class AddItem extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        const itemsRef = firebase.database().ref('shopping-items');
+        const itemsRef = firebase.database().ref('shopping-items').child('categories');
 
         if (!this.state.text.length) {
             return;
         }
         const newItem = {
-            text: this.state.text,
-            category: 'veg'
+            name: this.state.text
         };
-        itemsRef.push(newItem);
+        itemsRef.child("1").child("items").push(newItem);
         this.setState(state => ({
             text: ''
         }));

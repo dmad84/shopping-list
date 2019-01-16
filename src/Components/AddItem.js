@@ -18,7 +18,6 @@ class AddItem extends Component {
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.deleteItem = this.deleteItem.bind(this);
     }
 
     componentDidMount() {
@@ -37,7 +36,12 @@ class AddItem extends Component {
                     category.items = [];
                    
                     for (let i in categories[item].items) {
-                        category.items.push(categories[item].items[i]);
+                       
+                        let newC = {
+                            id: i,
+                            name: categories[item].items[i].name
+                        }
+                        category.items.push(newC);
                     }
                    
                     newItems.push(category);
@@ -74,7 +78,7 @@ class AddItem extends Component {
                 </form>
                 {this.state.items.length > 0 ? (
                     <div className="col-lg-8">
-                        <ListItems items={this.state.items} delete={this.deleteItem} />
+                        <ListItems items={this.state.items} />
                     </div>
                 ) : (
                         <div className="col-lg-8">
@@ -99,15 +103,12 @@ class AddItem extends Component {
         const newItem = {
             name: this.state.text
         };
-        itemsRef.child("1").child("items").push(newItem);
+        itemsRef.child("2").child("items").push(newItem);
         this.setState(state => ({
             text: ''
         }));
     }
-    deleteItem(id) {
-        const itemRef = firebase.database().ref('shopping-items');
-        itemRef.child(id).remove();
-    }
+   
 }
 
 export default AddItem;

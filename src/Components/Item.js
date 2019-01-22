@@ -10,15 +10,15 @@ class Item extends Component {
     return (
       <ul className="list-group mb-4">
         {this.props.items.map((item, index) => (
-          <li key={index} onClick={() => this.deleteItem(item.id)} className="list-group-item">{index + 1} {item.name}</li>
+          <li key={index} onClick={() => this.deleteItem(item.id, this.props.category)} className="list-group-item">{index + 1} {item.name}</li>
         ))}
       </ul>
     );
   }
 
-  deleteItem(id) {
+  deleteItem(id, category) {
     const itemRef = firebase.database().ref('shopping-items').child('categories');
-    itemRef.child("2").child("items").child(id).remove();
+    itemRef.child(category).child("items").child(id).remove();
   }
 };
 

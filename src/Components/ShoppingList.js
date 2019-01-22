@@ -14,9 +14,10 @@ class ShoppingList extends Component {
             items: [],
             text: '',
             categories: [],
-            category: ''
+            selectedCategory: ''
         };
         this.handleChange = this.handleChange.bind(this);
+        this.handleSelectChange = this.handleSelectChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -29,8 +30,8 @@ class ShoppingList extends Component {
             let newItems = [];
             for (let item in categories) {
                 let category = {
-                    id: item,
-                    text: categories[item].name
+                    value: item,
+                    label: categories[item].name
                 };
                 if(categories[item].items) {
                     category.items = [];
@@ -70,7 +71,7 @@ class ShoppingList extends Component {
                             <input placeholder="enter Item" onChange={this.handleChange} value={this.state.text} className="form-control">
                             </input>
                         </div>
-                        <Categories items={this.state.categories} />
+                        <Categories items={this.state.categories} update={this.handleSelectChange}/>
                         <div className="form-group col-md-2">
                             <button type="submit" className="btn btn-primary">add</button>
                         </div>
@@ -92,18 +93,22 @@ class ShoppingList extends Component {
     handleChange(e) {
         this.setState({ text: e.target.value });
     }
+    handleSelectChange(id) {
+        console.log(`Option selected:`, id);
+        this.setState({ selectedCategory: id });
+    }
 
     handleSubmit(e) {
         e.preventDefault();
         const itemsRef = firebase.database().ref('shopping-items').child('categories');
 
-        if (!this.state.text.length) {
+        if (!this.state.text.length && !this.state.selectedCategory.length) {
             return;
         }
         const newItem = {
             name: this.state.text
         };
-        itemsRef.child("-LWq4zi73h0wVpz3GfSx").child("items").push(newItem);
+        itemsRef.child(this.state.selectedCategory).child("items").push(newItem);
         this.setState(state => ({
             text: ''
         }));

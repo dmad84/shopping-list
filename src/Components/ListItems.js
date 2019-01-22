@@ -8,8 +8,8 @@ class ListItems extends Component {
     return (
       <ul className="list-group">
         {this.props.items.map((item,index) => (
-          <div key={item.id}>
-          <li  className="list-group-item">{item.text}</li>
+          <div key={item.value}>
+          <li  className="list-group-item">{item.label}</li>
             <Item items={item.items}  />
           </div>
         ))}

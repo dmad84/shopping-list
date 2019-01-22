@@ -94,7 +94,6 @@ class ShoppingList extends Component {
         this.setState({ text: e.target.value });
     }
     handleSelectChange(id) {
-        console.log(`Option selected:`, id);
         this.setState({ selectedCategory: id });
     }
 

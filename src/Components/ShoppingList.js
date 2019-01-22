@@ -6,7 +6,7 @@ import Categories from './Categories';
 import './AddItem.css';
 
 
-class AddItem extends Component {
+class ShoppingList extends Component {
     constructor(props) {
         super(props);
 
@@ -111,4 +111,4 @@ class AddItem extends Component {
    
 }
 
-export default AddItem;
+export default ShoppingList;

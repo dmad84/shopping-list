@@ -103,7 +103,7 @@ class AddItem extends Component {
         const newItem = {
             name: this.state.text
         };
-        itemsRef.child("2").child("items").push(newItem);
+        itemsRef.child("-LWq4zi73h0wVpz3GfSx").child("items").push(newItem);
         this.setState(state => ({
             text: ''
         }));

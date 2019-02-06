@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import firebase from '../firebase';
-import Categories from './Categories';
+import firebase from '../../firebase';
+import Categories from '../Categories';
 import './AddItem.css';
 
 export default class AddItem extends Component {
@@ -12,7 +12,7 @@ export default class AddItem extends Component {
       categories: [],
       selectedCategory: ''
     };
-    this.handleChange = this.handleChange.bind(this);
+    this.handleTextChange = this.handleTextChange.bind(this);
     this.handleSelectChange = this.handleSelectChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -22,7 +22,7 @@ export default class AddItem extends Component {
         <div className="form-row">
           <div className="form-group col-md-6">
             <label className="sr-only">Item</label>
-            <input placeholder="enter Item" onChange={this.handleChange} value={this.state.text} className="form-control">
+            <input placeholder="enter Item" onChange={this.handleTextChange} value={this.state.text} className="form-control">
             </input>
           </div>
           <Categories items={this.props.categories} update={this.handleSelectChange} />
@@ -33,7 +33,7 @@ export default class AddItem extends Component {
       </form>
     )
   }
-  handleChange(e) {
+  handleTextChange(e) {
     this.setState({ text: e.target.value });
   }
   handleSelectChange(id) {

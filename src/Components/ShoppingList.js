@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import firebase from '../firebase';
-import ListItems from './ListItems';
-import Loading from './Loading';
-import AddItem from './AddItem.js';
+import ListItems from './ListItems.js';
+import Loading from './Loading/Loading';
+import AddItem from './AddItem/AddItem.js';
 
 
 class ShoppingList extends Component {

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from 'prop-types';
 import firebase from '../firebase';
 
 class Item extends Component {
@@ -20,6 +21,10 @@ class Item extends Component {
     const itemRef = firebase.database().ref('shopping-items').child('categories');
     itemRef.child(category).child("items").child(id).remove();
   }
+};
+
+Item.propTypes = {
+  items: PropTypes.array.isRequired
 };
 
 export default Item;

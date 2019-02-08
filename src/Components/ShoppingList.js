@@ -43,12 +43,13 @@ class ShoppingList extends Component {
 
         }
         newCategory.push(category);
-
+        
       }
 
       this.setState({
         categories: newCategory
       });
+      console.log(categories);
       this.setState({
         items: newItems
       });

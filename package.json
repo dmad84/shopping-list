@@ -18,6 +18,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
+    "test coverage": "npm test -- --coverage --env=jsdom",
     "test watch": "react-scripts test --watchAll --env=jsdom",
     "eject": "react-scripts eject"
   },
@@ -31,5 +32,14 @@
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.9.1",
     "react-test-renderer": "^16.8.1"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}",
+      "!/node_modules/",
+      "!src/index.js",
+      "!src/Root.js"
+    ],
+    "coverageReporters": ["lcov"]
   }
 }

@@ -1,6 +1,6 @@
 // Link.react.test.js
 import React from 'react';
-import AddItem from '../AddItem';
+import AddItem from '../Components/AddItem/AddItem';
 import renderer from 'react-test-renderer';
 import { mount } from 'enzyme';
 

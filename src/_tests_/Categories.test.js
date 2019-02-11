@@ -1,6 +1,6 @@
 // Link.react.test.js
 import React from 'react';
-import Categories from '../Categories';
+import Categories from '../Components/Categories/Categories';
 import renderer from 'react-test-renderer';
 import { mount } from 'enzyme';
 

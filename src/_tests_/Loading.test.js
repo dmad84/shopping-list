@@ -1,6 +1,6 @@
 // Link.react.test.js
 import React from 'react';
-import Loading from '../Loading';
+import Loading from '../Components/Loading/Loading.js';
 import renderer from 'react-test-renderer';
 
 

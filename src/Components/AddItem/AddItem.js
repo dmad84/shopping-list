@@ -9,7 +9,8 @@ export default class AddItem extends Component {
     super(props);
     this.state = {
       text: '',
-      selectedCategory: ''
+      selectedCategory: '',
+      errors: ''
     };
     this.handleTextChange = this.handleTextChange.bind(this);
     this.handleSelectChange = this.handleSelectChange.bind(this);
@@ -24,8 +25,16 @@ export default class AddItem extends Component {
             <label className="sr-only">Item</label>
             <input placeholder="enter Item" onChange={this.handleTextChange} value={this.state.text} className="form-control">
             </input>
+            {
+              this.state.errors.text &&
+              <span> {this.state.errors.text}</span>
+            }
           </div>
           <Categories items={categories} update={this.handleSelectChange} />
+          {
+            this.state.errors.category &&
+            <span> {this.state.errors.category}</span>
+          }
           <div className="form-group col-md-2">
             <button type="submit" className="btn btn-primary">add</button>
           </div>
@@ -35,6 +44,13 @@ export default class AddItem extends Component {
   }
   handleTextChange(e) {
     this.setState({ text: e.target.value });
+    if (e.target.value.length > 0) {
+      this.setState(state => ({
+        errors: {
+          text: ''
+        }
+      }));
+    }
   }
   handleSelectChange(id) {
     this.setState({ selectedCategory: id });
@@ -44,16 +60,34 @@ export default class AddItem extends Component {
     e.preventDefault();
     const itemsRef = firebase.database().ref('shopping-items').child('categories');
 
-    if (!this.state.text.length && !this.state.selectedCategory.length) {
-      return;
+    if (!this.state.text.length || !this.state.selectedCategory.length) {
+      if (!this.state.text.length) {
+        this.setState(state => ({
+          errors: {
+            text: 'Please enter an item'
+          }
+        }));
+      }
+      if (!this.state.selectedCategory.length) {
+        this.setState(state => ({
+          errors: {
+            category: 'Please select a category'
+          }
+        }));
+      }
+
     }
-    const newItem = {
-      name: this.state.text
-    };
-    itemsRef.child(this.state.selectedCategory).child("items").push(newItem);
-    this.setState(state => ({
-      text: ''
-    }));
+    else {
+
+      const newItem = {
+        name: this.state.text
+      };
+      itemsRef.child(this.state.selectedCategory).child("items").push(newItem);
+      this.setState(state => ({
+        text: ''
+      }));
+    }
+
   }
 }
 AddItem.propTypes = {

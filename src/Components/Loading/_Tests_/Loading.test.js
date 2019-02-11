@@ -2,7 +2,6 @@
 import React from 'react';
 import Loading from '../Loading';
 import renderer from 'react-test-renderer';
-import { mount } from 'enzyme';
 
 
 describe('Render Loading', () => {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import firebase from '../../firebase';
 import PropTypes from 'prop-types';
-import Categories from '../Categories';
+import Categories from '../Categories/Categories';
 import './AddItem.css';
 
 export default class AddItem extends Component {

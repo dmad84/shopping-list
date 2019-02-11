@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import firebase from '../../firebase';
+import PropTypes from 'prop-types';
 import Categories from '../Categories';
 import './AddItem.css';
 
@@ -7,9 +8,7 @@ export default class AddItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: [],
       text: '',
-      categories: [],
       selectedCategory: ''
     };
     this.handleTextChange = this.handleTextChange.bind(this);
@@ -17,6 +16,7 @@ export default class AddItem extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   render() {
+    const categories = this.props.categories;
     return (
       <form onSubmit={this.handleSubmit} className="my-3 col-lg-8">
         <div className="form-row">
@@ -25,7 +25,7 @@ export default class AddItem extends Component {
             <input placeholder="enter Item" onChange={this.handleTextChange} value={this.state.text} className="form-control">
             </input>
           </div>
-          <Categories items={this.props.categories} update={this.handleSelectChange} />
+          <Categories items={categories} update={this.handleSelectChange} />
           <div className="form-group col-md-2">
             <button type="submit" className="btn btn-primary">add</button>
           </div>
@@ -56,3 +56,9 @@ export default class AddItem extends Component {
     }));
   }
 }
+AddItem.propTypes = {
+  categories: PropTypes.array.isRequired
+};
+AddItem.defaultProps = {
+  categories: []
+};

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import firebase from '../firebase';
-import ListItems from './ListItems.js';
+import ItemsList from './ItemLlist/ItemsList.js';
 import Loading from './Loading/Loading';
 import AddItem from './AddItem/AddItem.js';
 
@@ -31,7 +31,6 @@ class ShoppingList extends Component {
           category.items = [];
 
           for (let i in categories[item].items) {
-
             let newC = {
               id: i,
               name: categories[item].items[i].name
@@ -43,12 +42,13 @@ class ShoppingList extends Component {
 
         }
         newCategory.push(category);
-
+        
       }
 
       this.setState({
         categories: newCategory
       });
+      console.log(categories);
       this.setState({
         items: newItems
       });
@@ -61,7 +61,7 @@ class ShoppingList extends Component {
         <AddItem categories={this.state.categories} />
         {this.state.items.length > 0 ? (
           <div className="col-lg-8">
-            <ListItems items={this.state.items} />
+            <ItemsList items={this.state.items} />
           </div>
         ) : (
             <div className="col-lg-8">

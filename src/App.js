@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ShoppingList from './Components/ShoppingList';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faCarrot, faCheese, faSnowflake, faPepperHot, faShoppingBasket } from '@fortawesome/free-solid-svg-icons';
+
+library.add(faCarrot, faCheese, faSnowflake, faPepperHot, faShoppingBasket);
 
 class App extends Component {
   render() {

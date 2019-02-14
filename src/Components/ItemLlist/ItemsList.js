@@ -8,16 +8,16 @@ class ItemsList extends Component {
  
   render() {
     return (
-      <ul className="list-group">
+      <div className="card">
         {this.props.items.map((item) => (
           <div key={item.value}>
-            <li className="list-group-item bg-light">
+             <div key={item.value} className="card-header">
               <FontAwesomeIcon icon={Icons[item.label]} className="fa-icon" fixedWidth/>{item.label}
-            </li>
+            </div>
             <Item items={item.items} category={item.value} />
           </div>
         ))}
-      </ul>
+      </div>
     );
   }
 };

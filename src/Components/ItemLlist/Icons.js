@@ -3,5 +3,5 @@ export default {
 'Fridge': 'cheese',
 'Freezer': 'snowflake',
 'Asian': 'pepper-hot',
-'Groceries': 'shopping-bag'
+'Groceries': 'shopping-basket'
 }

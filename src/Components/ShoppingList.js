@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import firebase from '../firebase';
-import ItemsList from './ItemsList.js';
+import ItemsList from './ItemLlist/ItemsList.js';
 import Loading from './Loading/Loading';
 import AddItem from './AddItem/AddItem.js';
 
@@ -31,7 +31,6 @@ class ShoppingList extends Component {
           category.items = [];
 
           for (let i in categories[item].items) {
-
             let newC = {
               id: i,
               name: categories[item].items[i].name

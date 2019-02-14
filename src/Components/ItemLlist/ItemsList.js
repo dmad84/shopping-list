@@ -8,9 +8,9 @@ class ItemsList extends Component {
  
   render() {
     return (
-      <div className="card">
+      <div>
         {this.props.items.map((item) => (
-          <div key={item.value}>
+          <div key={item.value} className="card mb-4">
              <div key={item.value} className="card-header">
               <FontAwesomeIcon icon={Icons[item.label]} className="fa-icon" fixedWidth/>{item.label}
             </div>

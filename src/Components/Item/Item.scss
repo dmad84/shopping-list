@@ -1,0 +1,12 @@
+.fa-remove {
+    color: #e9ecef;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+    &:hover {
+        .fa-remove {
+            color: #6c757d;
+        }
+    }
+}

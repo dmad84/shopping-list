@@ -12,6 +12,7 @@ class ShoppingList extends Component {
     this.state = {
       items: [],
       categories: [],
+      loading: true
     };
 
   }
@@ -42,16 +43,15 @@ class ShoppingList extends Component {
 
         }
         newCategory.push(category);
-        
+
       }
 
       this.setState({
-        categories: newCategory
+        categories: newCategory,
+        items: newItems,
+        loading: false
       });
-      console.log(categories);
-      this.setState({
-        items: newItems
-      });
+
     });
   }
 
@@ -59,16 +59,22 @@ class ShoppingList extends Component {
     return (
       <div className="row">
         <AddItem categories={this.state.categories} />
-        {this.state.items.length > 0 ? (
+        {
+          this.state.loading &&
+          <div className="col-lg-8">
+            <Loading />
+          </div>
+        }
+        {this.state.items.length > 0 &&
           <div className="col-lg-8">
             <ItemsList items={this.state.items} />
           </div>
-        ) : (
-            <div className="col-lg-8">
-              <Loading />
-            </div>
-          )}
-
+        }
+        { !this.state.loading && this.state.items.length === 0 &&
+          <div className="col-lg-8">
+            <p>No items in the list</p>
+          </div>
+        }
       </div>
     );
   }

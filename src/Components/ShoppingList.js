@@ -60,21 +60,15 @@ class ShoppingList extends Component {
       <div className="row">
         <AddItem categories={this.state.categories} />
         {
-          this.state.loading &&
-          <div className="col-lg-8">
+          this.state.loading ?
+          (<div className="col-lg-8">
             <Loading />
           </div>
-        }
-        {this.state.items.length > 0 &&
+        ):(
           <div className="col-lg-8">
-            <ItemsList items={this.state.items} />
+          <ItemsList items={this.state.items} />
           </div>
-        }
-        { !this.state.loading && this.state.items.length === 0 &&
-          <div className="col-lg-8">
-            <p>No items in the list</p>
-          </div>
-        }
+        )}
       </div>
     );
   }
